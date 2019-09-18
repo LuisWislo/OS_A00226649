@@ -106,7 +106,7 @@ extern int sys_uptime(void);
 extern int sys_shutdown(void);
 extern int sys_reboot(void);
 
-static char* callnames[] = {
+/*static char* callnames[] = {
 [SYS_fork]    "fork -> ",
 [SYS_exit]    "exit -> ",
 [SYS_wait]    "wait -> ",
@@ -131,7 +131,7 @@ static char* callnames[] = {
 [SYS_shutdown] "shutdown -> ",
 [SYS_reboot] "reboot -> ",
 
-};
+};*/
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -167,7 +167,7 @@ syscall(void)
 
   num = curproc->tf->eax;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
-    cprintf("System call: %s%d\n", callnames[num],num);
+    //cprintf("System call: %s%d\n", callnames[num],num);
     curproc->tf->eax = syscalls[num]();
   } else {
     cprintf("%d %s: unknown sys call %d\n",
